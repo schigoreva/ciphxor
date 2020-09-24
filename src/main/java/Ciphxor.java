@@ -1,9 +1,9 @@
 import java.io.*;
 import org.apache.commons.cli.*;
 
-public class ciphxor {
+public class Ciphxor {
 
-    static String decode(byte[] input, String key) {
+    String decode(byte[] input, String key) {
         byte[] keyBytes = key.getBytes();
         for (int i = 0; i < input.length; i++) {
             input[i] ^= keyBytes[i % keyBytes.length];
@@ -11,7 +11,7 @@ public class ciphxor {
         return new String(input);
     }
 
-    static byte[] readFile(String path) throws IOException {
+    byte[] readFile(String path) throws IOException {
         File file = new File(path);
         try(FileInputStream reader = new FileInputStream(file)) {
             byte[] input = new byte[(int) file.length()];
@@ -20,7 +20,7 @@ public class ciphxor {
         }
     }
 
-    static CommandLine checkArguments(String[] args) {
+    CommandLine checkArguments(String[] args) {
         Options options = new Options();
         OptionGroup key = new OptionGroup();
         key.addOption(new Option("c", true, "encode key"));
@@ -49,7 +49,7 @@ public class ciphxor {
         return cmd;
     }
 
-    private static PrintWriter getWriter(String path) throws IOException {
+    private PrintWriter getWriter(String path) throws IOException {
         if (path == null) {
             return new PrintWriter(System.out);
         } else {
@@ -57,7 +57,7 @@ public class ciphxor {
         }
     }
 
-    public static void main(String[] args) {
+    public void main(String[] args) {
         CommandLine cmd;
         if ((cmd = checkArguments(args)) != null) {
             try (PrintWriter writer = getWriter(cmd.getOptionValue("o"))) {

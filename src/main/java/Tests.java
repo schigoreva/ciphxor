@@ -8,7 +8,9 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class Tests {
+class Tests {
+
+    private Ciphxor ciphxor = new Ciphxor();
 
     @Test
     void testDecode() {
